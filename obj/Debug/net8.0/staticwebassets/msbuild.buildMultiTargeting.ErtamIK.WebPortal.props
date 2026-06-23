@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ErtamIK.WebPortal.props" />
+</Project>

@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ErtamIK.WebPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ErtamIK.WebPortal.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow"
+             style="background: #F8F5F0 !important; border-bottom: 2px solid #820411 !important; box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important; padding-top: 0px; padding-bottom: 0px; min-height: 75px;">
+            <div class="container-fluid px-0">
+
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index"
+                   style="background-color: #ffffff; padding: 12px 30px; margin: 0; border-right: 1px solid rgba(130, 4, 17, 0.15); box-shadow: 5px 0 15px rgba(0,0,0,0.05); height: 75px;">
+                    <img src="/images/logo.png" alt="ERTAM A.Ş. İnsan Kaynakları" style="height: 48px; width: auto; object-fit: contain;"
+                         onerror="this.onerror=null; this.insertAdjacentHTML('afterend', '<div style=&quot;display:flex; flex-direction:column; align-items:flex-start;&quot;><h3 style=&quot;color:#820411; font-weight:800; margin:0; font-size:1.4rem; letter-spacing:0.5px;&quot;><span style=&quot;color:#333;&quot;>E</span>RTAM A.Ş.</h3><small style=&quot;color:#666; font-size:0.65rem; font-weight:700; text-transform:uppercase;&quot;>İnsan Kaynakları & Danışmanlık</small></div>'); this.style.display='none';">
+                </a>
+
+                <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation" style="border-color: rgba(130, 4, 17, 0.3);">
+                    <span class="navbar-toggler-icon" style="filter: sepia(1) saturate(5) hue-rotate(310deg);"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1 ms-4">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index"
+                               style="color: #2D2D2D !important; font-weight: 700; font-size: 1.05rem; transition: all 0.3s ease; padding: 8px 20px;">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"
+                               style="color: #2D2D2D !important; font-weight: 600; font-size: 1.05rem; opacity: 0.75; transition: all 0.3s ease; padding: 8px 20px;">Gizlilik Politikası</a>
+                        </li>
+                    </ul>
+
+                    <div class="d-none d-md-flex align-items-center pe-4">
+                        <span style="color: #820411; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px;">KARIYER PORTALI</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - ErtamIK.WebPortal - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
