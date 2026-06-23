@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: ertam-ik
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: DatabaseProvider
+        value: PostgreSql
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
