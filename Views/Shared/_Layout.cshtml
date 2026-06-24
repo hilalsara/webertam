@@ -26,7 +26,14 @@
                         <li><a class="nav-link" asp-controller="Home" asp-action="Contact">İletişim</a></li>
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li><a class="nav-link" asp-controller="Applications" asp-action="MyApplications">Başvurularım</a></li>
+                            @if (User.IsInRole("Factory"))
+                            {
+                                <li><a class="nav-link admin-link" asp-controller="Factory" asp-action="Index">Fabrika Talep Paneli</a></li>
+                            }
+                            else if (!User.IsInRole("Admin"))
+                            {
+                                <li><a class="nav-link" asp-controller="Applications" asp-action="MyApplications">Başvurularım</a></li>
+                            }
                             @if (User.IsInRole("Admin"))
                             {
                                 <li><a class="nav-link admin-link" asp-controller="Admin" asp-action="Index">Admin Paneli</a></li>
@@ -40,6 +47,7 @@
                         else
                         {
                             <li><a class="nav-link" asp-controller="Account" asp-action="Register">Kayıt Ol</a></li>
+                            <li><a class="nav-link" asp-controller="Account" asp-action="FactoryRegister">Fabrika Kaydı</a></li>
                             <li><a class="btn btn-brand btn-sm" asp-controller="Account" asp-action="Login">Giriş Yap</a></li>
                         }
                     </ul>
@@ -68,6 +76,7 @@
                     <a asp-controller="Home" asp-action="Privacy">Gizlilik Politikası</a>
                     <a asp-controller="Home" asp-action="Blog">Blog & Haberler</a>
                     <a asp-controller="Home" asp-action="ApplicationStatus">Başvuru Sorgulama</a>
+                    <a asp-controller="Account" asp-action="FactoryRegister">İşveren / Fabrika Portalı</a>
                 </div>
                 <div class="col-md-4">
                     <h6>İletişim</h6>

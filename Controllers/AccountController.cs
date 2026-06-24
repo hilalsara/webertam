@@ -16,6 +16,38 @@ public sealed class AccountController(
     [HttpGet]
     public IActionResult Register() => View(new RegisterViewModel());
 
+    [HttpGet]
+    public IActionResult FactoryRegister() => View(new FactoryRegisterViewModel());
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> FactoryRegister(FactoryRegisterViewModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        if (await repository.FindUserByEmailAsync(model.Email) is not null)
+        {
+            ModelState.AddModelError(nameof(model.Email), "Bu e-posta adresi zaten kayıtlı.");
+            return View(model);
+        }
+
+        try
+        {
+            int id = await repository.CreateFactoryAsync(model, passwordService.Hash(model.Password));
+            await SignInAsync(new UserAccount
+            {
+                Id = id,
+                FullName = model.ContactName,
+                Email = model.Email,
+                Role = "Factory"
+            }, false);
+            return RedirectToAction("Index", "Factory");
+        }
+        catch (PostgresException exception) when (exception.SqlState == "23505")
+        {
+            ModelState.AddModelError(nameof(model.Email), "Bu e-posta adresi zaten kayıtlı.");
+            return View(model);
+        }
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
@@ -70,9 +102,12 @@ public sealed class AccountController(
         if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
             return LocalRedirect(returnUrl);
 
-        return user.Role == "Admin"
-            ? RedirectToAction("Index", "Admin")
-            : RedirectToAction("Index", "Home");
+        return user.Role switch
+        {
+            "Admin" => RedirectToAction("Index", "Admin"),
+            "Factory" => RedirectToAction("Index", "Factory"),
+            _ => RedirectToAction("Index", "Home")
+        };
     }
 
     [Authorize, HttpPost, ValidateAntiForgeryToken]

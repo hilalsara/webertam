@@ -41,6 +41,17 @@ public sealed class AdminController(PortalRepository repository) : Controller
     public async Task<IActionResult> Applications() =>
         View(await repository.GetAllApplicationsAsync());
 
+    public async Task<IActionResult> StaffingRequests() =>
+        View(await repository.GetAllStaffingRequestsAsync());
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> StaffingRequestStatus(int id, string status, string? adminNote)
+    {
+        await repository.UpdateStaffingRequestStatusAsync(id, status, adminNote);
+        TempData["Success"] = "Müşteri personel talebi güncellendi.";
+        return RedirectToAction(nameof(StaffingRequests));
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> ApplicationStatus(int id, string status)
     {

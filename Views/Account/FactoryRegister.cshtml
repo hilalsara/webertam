@@ -1,0 +1,27 @@
+@model FactoryRegisterViewModel
+@{ ViewData["Title"] = "Fabrika / İşveren Kaydı"; }
+<section class="section">
+    <div class="container">
+        <div class="auth-wrap content-card">
+            <h1 class="section-title">Fabrika / İşveren Hesabı</h1>
+            <p class="text-muted">Personel ihtiyaçlarınızı Ertam İnsan Kaynakları'na güvenli biçimde iletin ve talep durumunu panelinizden takip edin.</p>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3"><label asp-for="CompanyName"></label><input asp-for="CompanyName" class="form-control" /><span asp-validation-for="CompanyName" class="text-danger"></span></div>
+                <div class="row g-3">
+                    <div class="col-md-6"><label asp-for="TaxNumber"></label><input asp-for="TaxNumber" class="form-control" /><span asp-validation-for="TaxNumber" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="ContactName"></label><input asp-for="ContactName" class="form-control" /><span asp-validation-for="ContactName" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="Phone"></label><input asp-for="Phone" class="form-control" /><span asp-validation-for="Phone" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="Email"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+                </div>
+                <div class="my-3"><label asp-for="Address"></label><textarea asp-for="Address" class="form-control" rows="3"></textarea><span asp-validation-for="Address" class="text-danger"></span></div>
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6"><label asp-for="Password"></label><input asp-for="Password" class="form-control" /><span asp-validation-for="Password" class="text-danger"></span></div>
+                    <div class="col-md-6"><label asp-for="ConfirmPassword"></label><input asp-for="ConfirmPassword" class="form-control" /><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+                </div>
+                <button class="btn btn-brand w-100">Fabrika Hesabını Oluştur</button>
+            </form>
+        </div>
+    </div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

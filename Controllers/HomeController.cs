@@ -9,14 +9,24 @@ public sealed class HomeController(
     PortalRepository repository,
     ILogger<HomeController> logger) : Controller
 {
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? search, string? location)
     {
         try
         {
+            IReadOnlyList<Ilan> jobs = await repository.GetActiveJobsAsync();
+            if (!string.IsNullOrWhiteSpace(search))
+                jobs = jobs.Where(x => x.txtIlanBasligi.Contains(search, StringComparison.OrdinalIgnoreCase)
+                    || x.txtSektor.Contains(search, StringComparison.OrdinalIgnoreCase)
+                    || x.txtIlanDetay.Contains(search, StringComparison.OrdinalIgnoreCase)).ToList();
+            if (!string.IsNullOrWhiteSpace(location))
+                jobs = jobs.Where(x => x.txtSehirIlce.Contains(location, StringComparison.OrdinalIgnoreCase)).ToList();
+
             return View(new HomeViewModel
             {
-                Jobs = await repository.GetActiveJobsAsync(),
-                Posts = await repository.GetPublishedPostsAsync(3)
+                Jobs = jobs,
+                Posts = await repository.GetPublishedPostsAsync(3),
+                Search = search?.Trim() ?? "",
+                Location = location?.Trim() ?? ""
             });
         }
         catch (Exception exception)

@@ -1,0 +1,31 @@
+@model IReadOnlyList<StaffingRequest>
+@{
+    ViewData["Title"] = "Fabrika Talep Paneli";
+    FactoryProfile? profile = ViewBag.Profile as FactoryProfile;
+}
+<section class="section">
+    <div class="container">
+        <div class="factory-hero d-md-flex justify-content-between align-items-center mb-4">
+            <div>
+                <small>İŞVEREN / MÜŞTERİ PORTALI</small>
+                <h1 class="h2 mb-1">@(profile?.CompanyName ?? "Fabrika Talep Paneli")</h1>
+                <p class="mb-0">Personel ihtiyaçlarınızı Ertam ekibine iletin ve süreci buradan takip edin.</p>
+            </div>
+            <a class="btn btn-light mt-3 mt-md-0" asp-action="NewRequest">Yeni Personel Talebi</a>
+        </div>
+        <h2 class="section-title">Gönderilen Talepler</h2>
+        @if (Model.Count == 0) { <div class="content-card">Henüz personel talebiniz bulunmuyor.</div> }
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-6"><article class="content-card request-card">
+                    <div class="d-flex justify-content-between gap-3"><h3 class="h5">@item.PositionTitle</h3><span class="status-pill">@item.Status</span></div>
+                    <p><strong>@item.PersonnelCount kişi</strong> · @item.WorkLocation · @item.EmploymentType</p>
+                    <p class="pre-line">@item.Qualifications</p>
+                    @if (!string.IsNullOrWhiteSpace(item.AdminNote)) { <div class="alert alert-light"><strong>Ertam notu:</strong> @item.AdminNote</div> }
+                    <small class="text-muted">@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small>
+                </article></div>
+            }
+        </div>
+    </div>
+</section>

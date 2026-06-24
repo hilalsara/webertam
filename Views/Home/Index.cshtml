@@ -14,6 +14,21 @@
 <section class="section" id="ilanlar">
     <div class="container">
         <h2 class="section-title">Açık İş İlanları</h2>
+        <form method="get" class="content-card job-filter mb-4">
+            <div>
+                <label for="search" class="form-label">Pozisyon veya sektör</label>
+                <input id="search" name="search" value="@Model.Search" class="form-control" placeholder="Örn. üretim, kaynakçı" />
+            </div>
+            <div>
+                <label for="location" class="form-label">Şehir / İlçe</label>
+                <input id="location" name="location" value="@Model.Location" class="form-control" placeholder="Örn. Gebze" />
+            </div>
+            <button class="btn btn-brand">İlanları Filtrele</button>
+            @if (!string.IsNullOrEmpty(Model.Search) || !string.IsNullOrEmpty(Model.Location))
+            {
+                <a asp-action="Index" asp-fragment="ilanlar" class="btn btn-outline-secondary">Temizle</a>
+            }
+        </form>
         <div class="row g-4">
             @if (Model.Jobs.Count == 0)
             {

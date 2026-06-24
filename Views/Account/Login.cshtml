@@ -2,7 +2,7 @@
 @{ ViewData["Title"] = "Giriş Yap"; }
 <div class="auth-wrap content-card">
     <h1 class="section-title">Giriş Yap</h1>
-    <p class="text-muted">Kullanıcılar ve yöneticiler aynı güvenli giriş ekranını kullanır.</p>
+    <p class="text-muted">Adaylar, fabrika yetkilileri ve yönetici aynı güvenli giriş ekranını kullanır.</p>
     <form method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3"><label asp-for="Email"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
@@ -11,5 +11,6 @@
         <button class="btn btn-brand w-100">Güvenli Giriş</button>
     </form>
     <p class="mt-3 mb-0">Hesabınız yok mu? <a asp-action="Register">Kayıt olun</a>.</p>
+    <p class="mt-2 mb-0">Personel arayan işletme misiniz? <a asp-action="FactoryRegister">Fabrika / işveren hesabı açın</a>.</p>
 </div>
 @section Scripts { <partial name="_ValidationScriptsPartial" /> }
