@@ -1,0 +1,19 @@
+@model IReadOnlyList<JobApplication>
+@{ ViewData["Title"] = "Başvuru Yönetimi"; }
+<section class="section"><div class="container-fluid px-lg-5 admin-shell">
+    <partial name="_AdminNav" />
+    <div>
+        <h1 class="section-title">Başvurular</h1>
+        <div class="table-responsive"><table class="table align-middle">
+            <thead><tr><th>Aday</th><th>Pozisyon</th><th>İletişim</th><th>Ön Yazı</th><th>Kod</th><th>Durum</th></tr></thead>
+            <tbody>@foreach(var item in Model){<tr><td>@item.FullName<br /><small>@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small></td><td>@item.JobTitle</td><td>@item.Email<br />@item.Phone</td><td style="min-width:260px">@item.CoverLetter</td><td>@item.ReferenceCode</td><td>
+                <form asp-action="ApplicationStatus" method="post" class="d-flex gap-2">
+                    <input type="hidden" name="id" value="@item.Id" />
+                    <select name="status" class="form-select form-select-sm">
+                        @foreach(var status in new[]{"Alındı","İnceleniyor","Görüşme","Olumlu","Olumsuz"}){<option selected="@(item.Status==status)">@status</option>}
+                    </select><button class="btn btn-brand btn-sm">Kaydet</button>
+                </form>
+            </td></tr>}</tbody>
+        </table></div>
+    </div>
+</div></section>

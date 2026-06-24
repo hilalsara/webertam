@@ -1,0 +1,14 @@
+@model SiteContent
+@{ ViewData["Title"] = "Site İçerikleri"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div class="content-card">
+        <h1 class="section-title">Site İçerikleri</h1>
+        <form method="post">
+            <div class="mb-3"><label>Gizlilik Politikası</label><textarea asp-for="PrivacyText" class="form-control" rows="12"></textarea></div>
+            <div class="mb-3"><label>Adres</label><input asp-for="ContactAddress" class="form-control" /></div>
+            <div class="row g-3"><div class="col-md-6"><label>Telefon</label><input asp-for="ContactPhone" class="form-control" /></div><div class="col-md-6"><label>E-posta</label><input asp-for="ContactEmail" class="form-control" /></div></div>
+            <button class="btn btn-brand mt-3">Kaydet</button>
+        </form>
+    </div>
+</div></section>

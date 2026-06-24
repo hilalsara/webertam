@@ -1,0 +1,12 @@
+@model IReadOnlyList<Ilan>
+@{ ViewData["Title"] = "İş İlanları Yönetimi"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div>
+        <div class="d-flex justify-content-between align-items-center"><h1 class="section-title">İş İlanları</h1><a class="btn btn-brand" asp-action="JobEdit">Yeni İlan</a></div>
+        <div class="table-responsive"><table class="table align-middle">
+            <thead><tr><th>Başlık</th><th>Sektör</th><th>Konum</th><th>Durum</th><th></th></tr></thead>
+            <tbody>@foreach(var job in Model){<tr><td>@job.txtIlanBasligi</td><td>@job.txtSektor</td><td>@job.txtSehirIlce</td><td>@(job.numIlanDurum==1?"Aktif":"Pasif")</td><td><a asp-action="JobEdit" asp-route-id="@job.Id">Düzenle</a></td></tr>}</tbody>
+        </table></div>
+    </div>
+</div></section>

@@ -1,0 +1,24 @@
+@model ApplicationLookupViewModel
+@{ ViewData["Title"] = "Başvuru Sorgulama"; }
+<section class="section">
+    <div class="container">
+        <div class="content-card mx-auto" style="max-width:720px">
+            <h1 class="section-title">Başvuru Sorgulama</h1>
+            <form method="post" class="row g-3">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="col-md-6"><label asp-for="ReferenceCode"></label><input asp-for="ReferenceCode" class="form-control" /><span asp-validation-for="ReferenceCode" class="text-danger"></span></div>
+                <div class="col-md-6"><label asp-for="Email"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+                <div class="col-12"><button class="btn btn-brand">Sorgula</button></div>
+            </form>
+            @if (Model.Result is not null)
+            {
+                <hr />
+                <h2 class="h4">@Model.Result.JobTitle</h2>
+                <p>Başvuru kodu: <strong>@Model.Result.ReferenceCode</strong></p>
+                <p>Durum: <span class="status-pill">@Model.Result.Status</span></p>
+                <p>Başvuru tarihi: @Model.Result.CreatedAt.ToString("dd.MM.yyyy HH:mm")</p>
+            }
+        </div>
+    </div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

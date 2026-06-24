@@ -1,0 +1,20 @@
+@model IReadOnlyList<BlogPost>
+@{ ViewData["Title"] = "Blog & Haberler"; }
+<section class="section">
+    <div class="container">
+        <h1 class="section-title">Blog & Haberler</h1>
+        <div class="row g-4">
+            @foreach (var post in Model)
+            {
+                <div class="col-md-6">
+                    <article class="content-card">
+                        <small class="text-muted">@post.Category · @post.PublishedAt.ToString("dd.MM.yyyy")</small>
+                        <h2 class="h4 mt-2">@post.Title</h2>
+                        <p>@post.Summary</p>
+                        <a class="btn btn-outline-brand" asp-action="BlogDetail" asp-route-id="@post.Id">Haberi Oku</a>
+                    </article>
+                </div>
+            }
+        </div>
+    </div>
+</section>

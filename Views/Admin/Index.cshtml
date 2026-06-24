@@ -1,0 +1,19 @@
+@model AdminDashboardViewModel
+@{ ViewData["Title"] = "Admin Paneli"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div>
+        <h1 class="section-title">Admin Paneli</h1>
+        <div class="row g-3 mb-4">
+            <div class="col-md-3"><div class="stat-card"><strong>@Model.UserCount</strong>Kullanıcı</div></div>
+            <div class="col-md-3"><div class="stat-card"><strong>@Model.ApplicationCount</strong>Başvuru</div></div>
+            <div class="col-md-3"><div class="stat-card"><strong>@Model.ActiveJobCount</strong>Aktif İlan</div></div>
+            <div class="col-md-3"><div class="stat-card"><strong>@Model.MessageCount</strong>Mesaj</div></div>
+        </div>
+        <h2 class="h4">Son Başvurular</h2>
+        <div class="table-responsive"><table class="table">
+            <thead><tr><th>Aday</th><th>Pozisyon</th><th>Kod</th><th>Durum</th></tr></thead>
+            <tbody>@foreach(var item in Model.RecentApplications){<tr><td>@item.FullName</td><td>@item.JobTitle</td><td>@item.ReferenceCode</td><td>@item.Status</td></tr>}</tbody>
+        </table></div>
+    </div>
+</div></section>

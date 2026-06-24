@@ -1,0 +1,12 @@
+@model IReadOnlyList<BlogPost>
+@{ ViewData["Title"] = "Blog Yönetimi"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div>
+        <div class="d-flex justify-content-between align-items-center"><h1 class="section-title">Blog & Haberler</h1><a class="btn btn-brand" asp-action="BlogEdit">Yeni İçerik</a></div>
+        <div class="table-responsive"><table class="table">
+            <thead><tr><th>Başlık</th><th>Kategori</th><th>Tarih</th><th></th></tr></thead>
+            <tbody>@foreach(var post in Model){<tr><td>@post.Title</td><td>@post.Category</td><td>@post.PublishedAt.ToString("dd.MM.yyyy")</td><td><a asp-action="BlogEdit" asp-route-id="@post.Id">Düzenle</a></td></tr>}</tbody>
+        </table></div>
+    </div>
+</div></section>

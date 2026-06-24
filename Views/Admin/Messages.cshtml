@@ -1,0 +1,9 @@
+@model IReadOnlyList<ContactMessage>
+@{ ViewData["Title"] = "İletişim Mesajları"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div>
+        <h1 class="section-title">İletişim Mesajları</h1>
+        @foreach(var item in Model){<article class="content-card mb-3"><div class="d-flex justify-content-between"><strong>@item.Subject</strong><small>@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</small></div><p class="mb-1">@item.FullName · @item.Email · @item.Phone</p><div class="pre-line">@item.Message</div></article>}
+    </div>
+</div></section>

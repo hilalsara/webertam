@@ -1,0 +1,8 @@
+@{ ViewData["Title"] = "Başvuru Alındı"; }
+<div class="auth-wrap content-card text-center">
+    <h1 class="section-title">Başvurunuz alındı</h1>
+    <p>Başvuru takip kodunuz:</p>
+    <div class="display-6 text-danger mb-4">@TempData["ReferenceCode"]</div>
+    <p>Bu kodu ve e-posta adresinizi kullanarak başvurunuzu sorgulayabilirsiniz.</p>
+    <a class="btn btn-brand" asp-controller="Home" asp-action="ApplicationStatus">Başvuruyu Sorgula</a>
+</div>

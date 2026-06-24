@@ -1,0 +1,33 @@
+@model ContactViewModel
+@{ ViewData["Title"] = "İletişim"; }
+<section class="section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <div class="content-card h-100">
+                    <h1 class="section-title">İletişim</h1>
+                    <p><strong>Adres</strong><br />@Model.Contact.ContactAddress</p>
+                    <p><strong>Telefon</strong><br />@Model.Contact.ContactPhone</p>
+                    <p><strong>E-posta</strong><br />@Model.Contact.ContactEmail</p>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="content-card">
+                    <h2 class="h4 mb-3">Bize Mesaj Gönderin</h2>
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row g-3">
+                            <div class="col-md-6"><label asp-for="FullName"></label><input asp-for="FullName" class="form-control" /><span asp-validation-for="FullName" class="text-danger"></span></div>
+                            <div class="col-md-6"><label asp-for="Email"></label><input asp-for="Email" class="form-control" /><span asp-validation-for="Email" class="text-danger"></span></div>
+                            <div class="col-md-6"><label asp-for="Phone"></label><input asp-for="Phone" class="form-control" /></div>
+                            <div class="col-md-6"><label asp-for="Subject"></label><input asp-for="Subject" class="form-control" /><span asp-validation-for="Subject" class="text-danger"></span></div>
+                            <div class="col-12"><label asp-for="Message"></label><textarea asp-for="Message" rows="6" class="form-control"></textarea><span asp-validation-for="Message" class="text-danger"></span></div>
+                            <div class="col-12"><button class="btn btn-brand" type="submit">Mesajı Gönder</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

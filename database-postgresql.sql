@@ -9,3 +9,6 @@ CREATE TABLE IF NOT EXISTS ilanlar (
 
 CREATE INDEX IF NOT EXISTS ix_ilanlar_num_ilan_durum
     ON ilanlar ("numIlanDurum");
+
+-- Diğer portal tabloları uygulama ilk açıldığında güvenli biçimde ve
+-- mevcut verileri silmeden otomatik oluşturulur.

@@ -1,0 +1,12 @@
+@model BlogPost
+@{ ViewData["Title"] = Model.Title; }
+<section class="section">
+    <div class="container">
+        <article class="content-card">
+            <small class="text-muted">@Model.Category · @Model.PublishedAt.ToString("dd.MM.yyyy")</small>
+            <h1 class="section-title mt-2">@Model.Title</h1>
+            <p class="lead">@Model.Summary</p>
+            <div class="pre-line">@Model.Content</div>
+        </article>
+    </div>
+</section>

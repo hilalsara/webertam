@@ -1,0 +1,17 @@
+@model JobEditViewModel
+@{ ViewData["Title"] = Model.Id == 0 ? "Yeni İlan" : "İlan Düzenle"; }
+<section class="section"><div class="container admin-shell">
+    <partial name="_AdminNav" />
+    <div class="content-card">
+        <h1 class="section-title">@ViewData["Title"]</h1>
+        <form method="post">
+            <input asp-for="Id" type="hidden" /><div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3"><label asp-for="Title"></label><input asp-for="Title" class="form-control" /><span asp-validation-for="Title" class="text-danger"></span></div>
+            <div class="row g-3"><div class="col-md-6"><label asp-for="Sector"></label><input asp-for="Sector" class="form-control" /></div><div class="col-md-6"><label asp-for="Location"></label><input asp-for="Location" class="form-control" /></div></div>
+            <div class="my-3"><label asp-for="Detail"></label><textarea asp-for="Detail" class="form-control" rows="9"></textarea></div>
+            <div class="form-check mb-3"><input asp-for="IsActive" class="form-check-input" /><label asp-for="IsActive" class="form-check-label"></label></div>
+            <button class="btn btn-brand">Kaydet</button>
+        </form>
+    </div>
+</div></section>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
