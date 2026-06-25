@@ -17,6 +17,8 @@ a { color: var(--brand); }
 .brand small { color: #6c6262; font-size: .67rem; letter-spacing: .8px; }
 .nav-link { color: #322c2c !important; font-weight: 600; }
 .nav-link:hover, .admin-link { color: var(--brand) !important; }
+.navbar-toggler { border-color: rgba(130,4,17,.35); padding: .45rem .6rem; }
+.navbar-toggler:focus { box-shadow: 0 0 0 .2rem rgba(130,4,17,.16); }
 .btn-brand { background: var(--brand); border-color: var(--brand); color: #fff; }
 .btn-brand:hover { background: var(--brand-dark); border-color: var(--brand-dark); color: #fff; }
 .btn-outline-brand { border-color: var(--brand); color: var(--brand); }
@@ -48,5 +50,20 @@ a { color: var(--brand); }
 .job-filter { display:grid; grid-template-columns:2fr 1.4fr auto auto; gap:12px; align-items:end; }
 .factory-hero { background:linear-gradient(135deg,var(--brand),var(--brand-dark)); color:#fff; border-radius:20px; padding:30px; }
 .request-card { border-left:5px solid var(--gold); }
-@media(max-width:991px){ .admin-shell{grid-template-columns:1fr}.admin-menu{display:flex;flex-wrap:wrap}.site-header{position:static} }
+@media(max-width:991px){
+  .admin-shell{grid-template-columns:1fr}
+  .admin-menu{display:flex;flex-wrap:wrap}
+  .site-header{position:static}
+  .site-header .navbar{padding:.65rem 0}
+  .site-header .navbar-collapse{margin-top:.75rem;padding:.75rem 0 1rem;border-top:1px solid rgba(130,4,17,.12)}
+  .site-header .navbar-nav{align-items:stretch}
+  .site-header .nav-link{padding:.7rem .25rem}
+  .site-header .navbar-nav li:last-child .btn{display:block;width:100%;margin-top:.45rem;padding:.65rem 1rem}
+}
+@media(max-width:420px){
+  .brand{gap:8px}
+  .brand-mark{width:40px;height:40px;font-size:1.45rem}
+  .brand strong{font-size:.92rem}
+  .brand small{font-size:.57rem;letter-spacing:.35px}
+}
 @media(max-width:767px){ .job-filter{grid-template-columns:1fr}.factory-hero{padding:22px} }
